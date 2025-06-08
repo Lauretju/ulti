@@ -173,7 +173,7 @@ export default function Body() {
       </section>  
 
       <main className="container-xl mt-4" style={{ marginTop: 0 }}>
-        <h2 className="texti mb-4">Nuestras opciones </h2>
+        <h2 className="texti mb-4" style={{ marginTop: "2rem",marginBottom:"2rem", fontSize: "1.5rem" }}>Nuestras opciones</h2>
 
         <div
           style={{
@@ -551,6 +551,10 @@ export default function Body() {
 
       <style>{`
         @media (max-width: 600px) {
+          h2.texti {
+            font-size: 1.2rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            margin-top: 0.5rem; /* Menor margen superior */
+          }
           section[aria-label="Carrito de compras"] {
             width: 90vw;
             right: 5vw;
@@ -567,11 +571,7 @@ export default function Body() {
           }
           span[aria-label], span[title] {
             white-space: nowrap !important;
-            font-size: 0.75rem !important;
-          }
-          div[style*="display: flex"][style*="gap: 0.3rem"] {
-            gap: 0.5rem !important;
-          }
+           
         }
       `}</style>
     </>

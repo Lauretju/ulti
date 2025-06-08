@@ -1,3 +1,5 @@
+
+
 export default function Header() {
   return (
     <header className="header bg-light" style={{ padding: '1rem 0' }}>
@@ -7,6 +9,7 @@ export default function Header() {
           display: 'flex',
           alignItems: 'center',
           gap: '1rem',
+          paddingLeft: '1rem', // Añadir un pequeño margen a la izquierda
         }}
       >
         <a href="index.html" style={{ flexShrink: 0 }}>

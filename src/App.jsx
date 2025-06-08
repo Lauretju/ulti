@@ -8,7 +8,7 @@ function App() {
       <Header />
       <Body />
       <footer className="footer bg-dark mt-5 py-5">
-        <div className="container-xl">
+        <div className="container-fluid"> {/* Cambiado a container-fluid */}
           <p className="footer-text">
             XoXo Gossip Cake - Todos los derechos Reservados ♥
           </p>
@@ -18,7 +18,7 @@ function App() {
           /* Reset margin and padding for body and html */
           html, body {
             margin: 0;
-            padding: 0;
+            padding: 10;
             box-sizing: border-box;
             min-height: 100%;
           }
@@ -30,13 +30,11 @@ function App() {
           .footer {
             background-color: #212529; /* Bootstrap bg-dark color */
             margin: 0;
-            padding: 2rem 2rem;
+            padding: 2rem 0; /* Ajustado para que el padding sea uniforme */
             width: 100%;
           }
-          .container-xl {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0.5 0.5rem;
+          .container-fluid { /* Cambiado a container-fluid */
+            padding: 0 1rem; /* Padding horizontal para el contenido */
           }
           .footer-text {
             color: white;
@@ -49,7 +47,7 @@ function App() {
           }
 
           /* Responsive adjustments */
-          @media (max-width: 768px) {
+          @media (max-width: 10px) {
             .footer-text {
               font-size: 1rem;
               margin-top: 1.5rem;
@@ -77,4 +75,3 @@ function App() {
 }
 
 export default App;
-
