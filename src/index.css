@@ -4,6 +4,11 @@
   margin-bottom: 40px;
 }
 
+@media (max-width: 600px) {
+  #productos > div {
+    marginRight: 1rem;
+  }
+}
 
 
 .btn-dark {

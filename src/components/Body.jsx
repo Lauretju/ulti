@@ -6,7 +6,7 @@ export default function Body() {
       id: 1,
       name: "Brownie",
       image: "brownie",
-      description: "Clásico brownie de chocolate, húmedo y denso, con un intenso sabor a cacao. Ideal para los amantes del chocolate.",
+      description: "Clásico brownie de chocolate, húmedo y denso, con un intenso sabor a cacao.",
       price: 600,
       imgSrc: "/img/brownie.png",
     },
@@ -30,13 +30,13 @@ export default function Body() {
       id: 4,
       name: "Budin Marmolado",
       image: "marmo",
-      description: "La combinación perfecta de chocolate y vainilla en un budín esponjoso con un diseño veteado que conquista a primera vista.",
+      description: "La combinación perfecta de chocolate y vainilla en un budín esponjoso con un diseño veteado que conquista.",
       price: 1700,
       imgSrc: "/img/marmo.png",
     },
     {
       id: 5,
-      name: "Cupcakes de Chocolate",
+      name: "Muffin de Chocolate",
       image: "muffin",
       description: "Muffin esponjoso y suave, con rico sabor a chocolate y un toque dulce perfecto para cualquier momento del día.",
       price: 500,
@@ -44,7 +44,7 @@ export default function Body() {
     },
     {
       id: 6,
-      name: "Cupcake Vainilla",
+      name: "Muffin Vainilla",
       image: "cupcakes",
       description: "Muffin ligero y aromático con sabor a vainilla, ideal para acompañar con café o té.",
       price: 500,
@@ -149,6 +149,16 @@ export default function Body() {
     setMostrarPagoOptions(false);
   }
 
+  // Función para copiar el alias al portapapeles
+  function copiarAlias() {
+    const alias = "gossip.cake";
+    navigator.clipboard.writeText(alias).then(() => {
+      alert("Alias copiado: " + alias);
+    }).catch(err => {
+      console.error("Error al copiar el alias: ", err);
+    });
+  }
+
   return (
     <>
       <section
@@ -157,6 +167,9 @@ export default function Body() {
           width: "100vw",
           overflowX: "hidden",
           marginLeft: "calc(-50vw + 50%)",
+          display: "flex",
+          justifyContent: "center",
+          paddingLeft: "10px",
         }}
       >
         <img
@@ -166,103 +179,129 @@ export default function Body() {
             width: "100%",
             height: "auto",
             display: "block",
-            maxWidth: "100%", // Asegura que no exceda el ancho del contenedor
-            objectFit: "contain", // Mantiene la proporción de la imagen
+            maxWidth: "100%",
+            objectFit: "contain",
           }}
         />
-      </section>  
+      </section>
 
-      <main className="container-xl mt-4" style={{ marginTop: 0 }}>
-        <h2 className="texti mb-4" style={{ marginTop: "2rem",marginBottom:"2rem", fontSize: "1.5rem" }}>Nuestras opciones</h2>
+      <main
+        className="mt-4"
+        style={{
+          marginTop: 0,
+          marginLeft: "auto",
+          marginRight: "auto",
+          maxWidth: "1200px",
+        }}
+      >
+        <div className="container">
+          <h2
+            className="texti mb-4"
+            style={{
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              fontSize: "1.5rem",
+            }}
+          >
+            Nuestras opciones
+          </h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gridTemplateRows: "repeat(3, auto)",
-            gap: "1.5rem",
-          }}
-          id="productos"
-        >
-          {data.map((prod) => (
-            <div
-              key={prod.id}
-              style={{
-                backgroundColor: "#f8bbd0",
-                border: "2px solid #ec407a",
-                borderRadius: "10px",
-                padding: "0.8rem",
-                textAlign: "center",
-                boxShadow: "0 4px 10px rgba(236,64,122,0.4)",
-                fontSize: "0.9rem",
-                transition: "transform 0.3s ease",
-                cursor: "default",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-            >
-              <img
-                src={prod.imgSrc}
-                alt={prod.name}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: "1.5rem",
+            }}
+            id="productos"
+          >
+            {data.map((prod) => (
+              <div
+                key={prod.id}
                 style={{
-                  width: "180px",
-                  height: "180px",
-                  objectFit: "cover",
-                  marginBottom: "0.8rem",
-                  borderRadius: "8px",
-                  display: "block",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  console.error("Error cargando imagen:", e.target.src);
-                }}
-              />
-              <h3
-                className="fs-5 fw-bold text-uppercase"
-                style={{
-                  marginBottom: "0.3rem",
-                  color: "#ec407a",
-                  fontFamily: "'Arial', sans-serif",
-                }}
-              >
-                {prod.name}
-              </h3>
-              <p
-                style={{
-                  marginBottom: "0.3rem",
-                  fontSize: "0.85rem",
-                  color: "#333",
-                }}
-              >
-                {prod.description}
-              </p>
-              <p className="fw-bold text-primary fs-4" style={{ marginBottom: "0" }}>
-                ${prod.price}
-              </p>
-              <button
-                onClick={() => addToCart(prod)}
-                style={{
-                  marginTop: "0.8rem",
-                  backgroundColor: "#ec407a",
-                  color: "white",
-                  border: "none",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  fontWeight: "bold",
+                  backgroundColor: "#f8bbd0",
+                  border: "2px solid #ec407a",
+                  borderRadius: "10px",
+                  padding: "0.8rem",
+                  textAlign: "center",
+                  boxShadow: "0 4px 10px rgba(236,64,122,0.4)",
                   fontSize: "0.9rem",
-                  transition: "background-color 0.3s ease",
+                  transition: "transform 0.3s ease",
+                  cursor: "default",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#d81b60")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#ec407a")}
-                aria-label={`Añadir ${prod.name} al carrito`}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "scale(1.05)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
               >
-                Añadir al carrito
-              </button>
-            </div>
-          ))}
+                <img
+                  src={prod.imgSrc}
+                  alt={prod.name}
+                  style={{
+                    width: "180px",
+                    height: "180px",
+                    objectFit: "cover",
+                    marginBottom: "0.8rem",
+                    borderRadius: "8px",
+                    display: "block",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    console.error("Error cargando imagen:", e.target.src);
+                  }}
+                />
+                <h3
+                  className="fs-5 fw-bold text-uppercase"
+                  style={{
+                    marginBottom: "0.3rem",
+                    color: "#ec407a",
+                    fontFamily: "'Arial', sans-serif",
+                  }}
+                >
+                  {prod.name}
+                </h3>
+                <p
+                  style={{
+                    marginBottom: "0.3rem",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                >
+                  {prod.description}
+                </p>
+                <p className="fw-bold text-primary fs-4" style={{ marginBottom: "0" }}>
+                  ${prod.price}
+                </p>
+                <button
+                  onClick={() => addToCart(prod)}
+                  style={{
+                    marginTop: "0.8rem",
+                    backgroundColor: "#ec407a",
+                    color: "white",
+                    border: "none",
+                    padding: "0.5rem 1rem",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                    fontSize: "0.9rem",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#d81b60")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#ec407a")
+                  }
+                  aria-label={`Añadir ${prod.name} al carrito`}
+                >
+                  Añadir al carrito
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Botón icono carrito fijo arriba derecha */}
@@ -272,10 +311,10 @@ export default function Body() {
           title={cartVisible ? "Cerrar carrito" : "Abrir carrito"}
           style={{
             position: "fixed",
-            top: "1rem", // Ajusta esta propiedad para mover verticalmente
-            right: "1rem", // Ajusta esta propiedad para mover horizontalmente
-            width: "40px", // Cambia el tamaño de la imagen
-            height: "40px", // Cambia el tamaño de la imagen
+            top: "1rem",
+            right: "1rem",
+            width: "40px",
+            height: "40px",
             borderRadius: "50%",
             border: "none",
             backgroundColor: "#ec407a",
@@ -291,10 +330,10 @@ export default function Body() {
           <img
             src="/img/carrito.png"
             alt="Carrito"
-            style={{ 
-              width: "100%", 
-              height: "100%", 
-              objectFit: "contain" 
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
             }}
           />
         </button>
@@ -318,7 +357,9 @@ export default function Body() {
           }}
           aria-label="Carrito de compras"
         >
-          <h3 style={{ color: "#ec407a", fontFamily: "'Arial', sans-serif" }}>Carrito</h3>
+          <h3 style={{ color: "#ec407a", fontFamily: "'Arial', sans-serif" }}>
+            Carrito
+          </h3>
           {Object.keys(cart).length === 0 ? (
             <p style={{ color: "#555" }}>El carrito está vacío.</p>
           ) : (
@@ -432,7 +473,7 @@ export default function Body() {
                         fontSize: "0.9rem",
                       }}
                     >
-                      ${ (item.price * item.quantity).toFixed(2) }
+                      ${(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 </li>
@@ -515,10 +556,20 @@ export default function Body() {
                   }}
                 >
                   <p style={{ marginBottom: "1rem" }}>
-                    {" "}
                     <strong style={{ color: "#e91e63" }}>
                       Alias para transferir: gossip.cake
                     </strong>
+                    <img
+                      src="/img/copiar.png"
+                      alt="Copiar"
+                      style={{
+                        width: "20px", // Ajusta el tamaño según sea necesario
+                        height: "20px",
+                        cursor: "pointer",
+                        marginLeft: "0.5rem", // Espacio entre el texto y la imagen
+                      }}
+                      onClick={copiarAlias} // Hacer que la imagen copie el alias al hacer clic
+                    />
                   </p>
                   <button
                     onClick={finalizarCompraWhatsApp}
@@ -532,10 +583,11 @@ export default function Body() {
                       fontWeight: "bold",
                       fontSize: "1rem",
                       transition: "background-color 0.3s ease",
+                      marginTop: "0.5rem", // Espacio entre el botón de finalizar compra y la fila anterior
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.backgroundColor = "#ad1457")
-                    }
+                      (e.currentTarget.style.backgroundColor = "#ad145"
+                                            )}
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.backgroundColor = "#e91e63")
                     }
@@ -548,32 +600,6 @@ export default function Body() {
           )}
         </section>
       </main>
-
-      <style>{`
-        @media (max-width: 600px) {
-          h2.texti {
-            font-size: 1.2rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
-            margin-top: 0.5rem; /* Menor margen superior */
-          }
-          section[aria-label="Carrito de compras"] {
-            width: 90vw;
-            right: 5vw;
-          }
-          ul > li {
-            flex-wrap: nowrap !important;
-            gap: 0.75rem !important;
-          }
-          button {
-            font-size: 1.1rem !important;
-          }
-          button:hover {
-            filter: brightness(0.9);
-          }
-          span[aria-label], span[title] {
-            white-space: nowrap !important;
-           
-        }
-      `}</style>
     </>
   );
 }
